@@ -1,3 +1,4 @@
+import sys
 import pandas as pd
 import streamlit as st
 from streamlit import session_state
@@ -44,10 +45,10 @@ def initialize_session_state(data, session_state) -> None:
         while (session_state[INDEX] < len(data) and data.at[session_state[INDEX], 'answer'] in ["not suitable", "positive", "negative"]):
             session_state.index += 1
 
-def update(data, index, tag):
+def update(data, index, tag, csv_filename):
     data.at[index, 'answer'] = tag
     session_state.index += 1
-    save_data(data)
+    save_data(data, csv_filename)
 
 
 
@@ -56,7 +57,7 @@ def main():
 
     st.title("Base Sentences Tagger")
 
-    data = load_data()
+    data = load_data(csv_filename)
 
     initialize_session_state(data, st.session_state)
 
@@ -66,9 +67,9 @@ def main():
       expander = st.expander(label="See Instructions")
       expander.write(INSTRUCRIONS)
       st.markdown(f"### Sentence : {data.at[index, 'sentence_text']}")
-      positive_button = st.button("Not Suitable", use_container_width=True, on_click=lambda: update(data, index, "not suitable"))
-      negative_button = st.button("Positive Base", use_container_width=True, on_click=lambda: update(data, index, "positive"))
-      neutral_button = st.button("Negative Base", use_container_width=True, on_click=lambda: update(data, index, "negative"))
+      positive_button = st.button("Not Suitable", use_container_width=True, on_click=lambda: update(data, index, "not suitable", csv_filename))
+      negative_button = st.button("Positive Base", use_container_width=True, on_click=lambda: update(data, index, "positive", csv_filename))
+      neutral_button = st.button("Negative Base", use_container_width=True, on_click=lambda: update(data, index, "negative", csv_filename))
 
       st.metric("How Many Sentence You Did:", st.session_state.index)
 
