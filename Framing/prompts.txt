@@ -1,0 +1,49 @@
+1. Without using the word framing
+    1.1 Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a positive suffix.
+    1.2 Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a positive prefix.
+    1.3 Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a negative suffix.
+    1.4 Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a negative prefix.
+
+2. Using the definition of Framing.
+    2.1 The framing effect is a cognitive bias in which people decide between options based on whether the options
+        are presented with positive or negative connotations.
+        Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a positive framing.
+    2.2 The framing effect is a cognitive bias in which people decide between options based on whether the options
+        are presented with positive or negative connotations.
+        Here is a sentence: <sentence>.
+        You are not allowed to change this sentence. Add a negative framing.
+
+3. With an example.
+    3.1 Here is an example of a base sentence with a negative sentiment:
+        I failed my math test today.
+        Here is the same sentence, after adding a positive framing:
+        I failed my math test today, however I see it as an opportunity to learn and improve in the future.
+        Here is a negative sentence.
+        Like the example, add a positive suffix or prefix to it. Don't change the original sentence.
+
+    3.2 Here is an example of a base sentence with a negative sentiment:
+        I failed my math test today.
+        Here is the same sentence, after adding a negative framing:
+        I failed my math test today and I feel like a failure.
+        Here is a negative sentence.
+        Like the example, add a negative suffix or prefix to it. Don't change the original sentence.
+
+    3.3 Here is an example of a base sentence with a positive sentiment:
+        I got an A on my math test.
+        Here is the same sentence, after adding a positive framing:
+        I got an A on my math test. I feel like I earned it, as I worked very hard to get it.
+        Here is a positive sentence.
+        Like the example, add a positive suffix or prefix to it. Don't change the original sentence.
+
+    3.4 Here is an example of a base sentence with a positive sentiment:
+        I got an A on my math test.
+        Here is the same sentence, after adding a negative framing:
+        I got an A on my math test. I think I spent too much time learning to it though.
+        Here is a positive sentence.
+        Like the example, add a negative suffix or prefix to it. Don't change the original sentence.
+
