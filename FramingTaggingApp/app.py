@@ -6,8 +6,7 @@ from streamlit import session_state
 INDEX = "index"
 
 INSTRUCRIONS = """
-
-You will encounter sentences with a positive framing, followed by three additional sentences,
+You will encounter sentences with a positive framing, followed by four additional sentences,
  each introducing a framing.
   Select the one that effectively transforms the sentiment to negative while preserving the
    essence of the original statement.
@@ -27,8 +26,8 @@ def initialize_session_state(data, session_state) -> None:
         while (session_state[INDEX] < len(data) and data.at[session_state[INDEX], 'answer'] in ["not suitable", "positive", "negative"]):
             session_state.index += 1
 
-def update(data, index, csv_filename):
-    data.at[index, data] = 'X'
+def update(data, index, csv_filename, col):
+    data.at[index, col] = 'X'
     session_state.index += 1
     save_data(data, csv_filename)
 
@@ -59,9 +58,10 @@ def main():
 
 
       st.markdown(f"### Sentence : {data.at[index, 'base_sentence']}")
-      positive_button = st.button("First", use_container_width=True, on_click=lambda: update('first', index, csv_filename))
-      negative_button = st.button("Second", use_container_width=True, on_click=lambda: update('second', index, csv_filename))
-      neutral_button = st.button("Third", use_container_width=True, on_click=lambda: update('third"', index, csv_filename))
+      positive_button = st.button("First", use_container_width=True, on_click=lambda: update('first', index, csv_filename, "isFirst"))
+      negative_button = st.button("Second", use_container_width=True, on_click=lambda: update('second', index, csv_filename, "isSecond"))
+      neutral_button = st.button("Third", use_container_width=True, on_click=lambda: update('third"', index, csv_filename, "isThird"))
+      neutral_button = st.button("Forth", use_container_width=True, on_click=lambda: update('forth"', index, csv_filename, "isForth"))
 
       st.metric("How Many Sentence You Did:", st.session_state.index)
 

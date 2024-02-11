@@ -30,20 +30,20 @@
         I failed my math test today.
         Here is the same sentence, after adding a negative framing:
         I failed my math test today and I feel like a failure.
-        Here is a negative sentence.
+        Here is a negative sentence: <sentence>.
         Like the example, add a negative suffix or prefix to it. Don't change the original sentence.
 
     3.3 Here is an example of a base sentence with a positive sentiment:
         I got an A on my math test.
         Here is the same sentence, after adding a positive framing:
         I got an A on my math test. I feel like I earned it, as I worked very hard to get it.
-        Here is a positive sentence.
+        Here is a positive sentence: <sentence>.
         Like the example, add a positive suffix or prefix to it. Don't change the original sentence.
 
     3.4 Here is an example of a base sentence with a positive sentiment:
         I got an A on my math test.
         Here is the same sentence, after adding a negative framing:
         I got an A on my math test. I think I spent too much time learning to it though.
-        Here is a positive sentence.
+        Here is a positive sentence: <sentence>.
         Like the example, add a negative suffix or prefix to it. Don't change the original sentence.
 
