@@ -23,7 +23,12 @@ def save_data(data, csv_filename):
 def initialize_session_state(data, session_state) -> None:
     if INDEX not in session_state:
         session_state[INDEX] = 0
-        while (session_state[INDEX] < len(data) and data.at[session_state[INDEX], 'answer'] in ["not suitable", "positive", "negative"]):
+        while (session_state[INDEX] < len(data) and (
+               data.at[session_state[INDEX], 'isFirst'] == 'X' or
+               data.at[session_state[INDEX], 'isSecond'] == 'X' or
+               data.at[session_state[INDEX], 'isThird'] == 'X' or
+               data.at[session_state[INDEX], 'isForth'] == 'X'
+        )):
             session_state.index += 1
 
 def update(data, index, csv_filename, col):
@@ -47,21 +52,28 @@ def main():
     if index < len(data):
       expander = st.expander(label="See Instructions")
       expander.write(INSTRUCRIONS)
-      st.markdown(f"### Sentence : {data.at[index, 'base_sentence']}")
-      firstSentence = data.at[index, 'first']
-      secondSentence = data.at[index, 'second']
-      thirdSentence = data.at[index, 'third']
+      st.markdown(f"### Sentence : {data.at[index, 'Sentence']}")
+      firstSentence = data.at[index, 'First']
+      secondSentence = data.at[index, 'Second']
+      thirdSentence = data.at[index, 'Third']
+      fourthSentence = data.at[index, 'Fourth']
+
 
       st.markdown(f"### Sentence : {firstSentence}")
+      fisrt_button = st.button("First", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isFirst"))
+
       st.markdown(f"### Sentence : {secondSentence}")
+      second_button = st.button("Second", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isSecond"))
+
       st.markdown(f"### Sentence : {thirdSentence}")
+      third_button = st.button("Third", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isThird"))
+
+      st.markdown(f"### Sentence : {fourthSentence}")
+      fourth_button = st.button("Fourth", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isFourth"))
 
 
-      st.markdown(f"### Sentence : {data.at[index, 'base_sentence']}")
-      positive_button = st.button("First", use_container_width=True, on_click=lambda: update('first', index, csv_filename, "isFirst"))
-      negative_button = st.button("Second", use_container_width=True, on_click=lambda: update('second', index, csv_filename, "isSecond"))
-      neutral_button = st.button("Third", use_container_width=True, on_click=lambda: update('third"', index, csv_filename, "isThird"))
-      neutral_button = st.button("Forth", use_container_width=True, on_click=lambda: update('forth"', index, csv_filename, "isForth"))
+
+      st.markdown(f"### Sentence : {data.at[index, 'Sentence']}")
 
       st.metric("How Many Sentence You Did:", st.session_state.index)
 
