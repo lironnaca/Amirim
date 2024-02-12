@@ -55,7 +55,7 @@ PROMPTS = [
         "Here is the same sentence, after adding a negative framing:\n"
         "I failed my math test today and I feel like a failure.\n"
         "Here is a negative sentence: <sentence>.\n"
-        "Like the example, add a negative suffix or prefix to it. Don't change the original sentence.""
+        "Like the example, add a negative suffix or prefix to it. Don't change the original sentence."
     ],
     [
         "Here is a sentence: <sentence>.\n"
@@ -79,14 +79,14 @@ PROMPTS = [
 ]
 
 
-def makeFraming(sentence, prompt):
+def makeFraming(client, sentence, prompt):
     prompt = prompt.replace("<sentence>", sentence)
     dic = [{"role": "user", "content": prompt}]
-    chat = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=dic)
+    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=dic)
     return chat.choices[0].message.content.split("\n")
 
 
-def makeTestData(final_df, sentiment, i):
+def makeTestData(client, final_df, sentiment, i):
     sentences = []
     first_results = []
     second_results = []
@@ -100,7 +100,7 @@ def makeTestData(final_df, sentiment, i):
     for sentence in final_df[final_df['label'] == sentiment]['sentence']:
         sentences.append(sentence)
         for index, prompt in enumerate(PROMPTS[i]):
-            result_str = makeFraming(sentence, prompt)
+            result_str = makeFraming(client, sentence, prompt)
             if index == 0:
                 first_results.append(result_str)
             elif index == 1:
@@ -109,6 +109,7 @@ def makeTestData(final_df, sentiment, i):
                 third_results.append(result_str)
             elif index == 3:
                 fourth_results.append(result_str)
+        print("done with sentence:" + sentence)
 
     combined_result_df = pd.DataFrame({
         'Sentence': sentences,
@@ -127,8 +128,8 @@ def makeTestData(final_df, sentiment, i):
 
 if __name__ == '__main__':
     final_df = pd.read_csv('testData.csv')
-    makeTestData(final_df, "positive", 0)
-    makeTestData(final_df, "positive", 1)
-    makeTestData(final_df, "negative", 2)
-    makeTestData(final_df, "negative", 3)
-    # openai.api_key = sys.args[1]
+    client = openai.Client(api_key = sys.argv[1])
+    # makeTestData(client, final_df, "positive", 0)
+    # makeTestData(client, final_df, "positive", 1)
+    # makeTestData(client, final_df, "negative", 2)
+    makeTestData(client, final_df, "negative", 3)
