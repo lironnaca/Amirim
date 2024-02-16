@@ -45,6 +45,7 @@ PROMPTS = [
 
         "Here is a sentence: <sentence>.\n"
         "You are not allowed to change this sentence. Add a positive prefix.",
+
         "The framing effect is a cognitive bias in which people decide between options based on whether the options are "
         "presented with positive or negative connotations.\n "
         "Here is a sentence: <sentence>.\n"
@@ -52,10 +53,10 @@ PROMPTS = [
 
         "Here is an example of a base sentence with a negative sentiment:\n"
         "I failed my math test today.\n"
-        "Here is the same sentence, after adding a negative framing:\n"
-        "I failed my math test today and I feel like a failure.\n"
+        "Here is the same sentence, after adding a positive framing:\n"
+        "I failed my math test today, however I see it as an opportunity to learn and improve in the future.\n"
         "Here is a negative sentence: <sentence>.\n"
-        "Like the example, add a negative suffix or prefix to it. Don't change the original sentence."
+        "Like the example, add a positive suffix or prefix to it. Don't change the original sentence.\n"
     ],
     [
         "Here is a sentence: <sentence>.\n"
@@ -71,10 +72,10 @@ PROMPTS = [
 
         "Here is an example of a base sentence with a negative sentiment:\n"
         "I failed my math test today.\n"
-        "Here is the same sentence, after adding a positive framing:\n"
-        "I failed my math test today, however I see it as an opportunity to learn and improve in the future.\n"
-        "Here is a negative sentence.\n"
-        "Like the example, add a positive suffix or prefix to it. Don't change the original sentence."
+        "Here is the same sentence, after adding a negative framing:\n"
+        "I failed my math test today and I feel like a failure.\n"
+        "Here is a negative sentence: <sentence>.\n"
+        "Like the example, add a negative suffix or prefix to it. Don't change the original sentence.\n"
     ],
 ]
 
@@ -82,7 +83,7 @@ PROMPTS = [
 def makeFraming(client, sentence, prompt):
     prompt = prompt.replace("<sentence>", sentence)
     dic = [{"role": "user", "content": prompt}]
-    chat = client.chat.completions.create(model="gpt-3.5-turbo", messages=dic)
+    chat = client.chat.completions.create(model="gpt-4", messages=dic)
     return chat.choices[0].message.content.split("\n")
 
 
@@ -131,5 +132,5 @@ if __name__ == '__main__':
     client = openai.Client(api_key = sys.argv[1])
     # makeTestData(client, final_df, "positive", 0)
     # makeTestData(client, final_df, "positive", 1)
-    # makeTestData(client, final_df, "negative", 2)
-    makeTestData(client, final_df, "negative", 3)
+    makeTestData(client, final_df, "negative", 2)
+    # makeTestData(client, final_df, "negative", 3)

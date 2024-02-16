@@ -59,21 +59,19 @@ def main():
       fourthSentence = data.at[index, 'Fourth']
 
 
-      st.markdown(f"### Sentence : {firstSentence}")
+      st.markdown(f"### First Sentence : {firstSentence}")
       fisrt_button = st.button("First", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isFirst"))
 
-      st.markdown(f"### Sentence : {secondSentence}")
+      st.markdown(f"### Second Sentence : {secondSentence}")
       second_button = st.button("Second", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isSecond"))
 
-      st.markdown(f"### Sentence : {thirdSentence}")
+      st.markdown(f"### Third Sentence : {thirdSentence}")
       third_button = st.button("Third", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isThird"))
 
-      st.markdown(f"### Sentence : {fourthSentence}")
+      st.markdown(f"### Fourth Sentence : {fourthSentence}")
       fourth_button = st.button("Fourth", use_container_width=True, on_click=lambda: update(data, index, csv_filename, "isFourth"))
 
 
-
-      st.markdown(f"### Sentence : {data.at[index, 'Sentence']}")
 
       st.metric("How Many Sentence You Did:", st.session_state.index)
 
